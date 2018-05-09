@@ -9,7 +9,8 @@ namespace FunctionApp
     public static class AciFunctions
     {
         [FunctionName("CreateContainerInstance")]
-        public static async Task StartContainerInstance([QueueTrigger("create-aci")]string startQueue, 
+        public static async Task StartContainerInstance(
+            [QueueTrigger("create-aci")] string startQueue, 
             [Aci(AciName="juice-shop", Action=AciAction.Create)] AciClient aciClient,
             TraceWriter log)
         {
@@ -31,7 +32,8 @@ namespace FunctionApp
         }
 
         [FunctionName("DeleteContainerInstance")]
-        public static async Task DeleteContainerInstance([QueueTrigger("delete-aci")]string deleteQueue,
+        public static async Task DeleteContainerInstance(
+            [QueueTrigger("delete-aci")] string deleteQueue,
             [Aci(AciName="juice-shop", Action=AciAction.Delete)] AciClient aciClient,
             TraceWriter log)
         {
