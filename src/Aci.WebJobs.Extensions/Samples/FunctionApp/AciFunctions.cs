@@ -1,4 +1,5 @@
-using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Aci.WebJobs.Extensions;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
@@ -8,27 +9,42 @@ namespace FunctionApp
     public static class AciFunctions
     {
         [FunctionName("CreateContainerInstance")]
-        public static void StartContainerInstance([QueueTrigger("create-aci")]string startQueue, 
-            [Aci(ContainerImageName="", Action=AciAction.Create)] AciClient aciClient,
+        public static async Task StartContainerInstance([QueueTrigger("create-aci")]string startQueue, 
+            [Aci(AciName="juice-shop", Action=AciAction.Create)] AciClient aciClient,
             TraceWriter log)
         {
-            log.Info($"C# Queue trigger function processed: {startQueue}");
+            log.Info("Creating container instance...");
+
+            var stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            await aciClient.CreateAsync("bkimminich/juice-shop", 3000);
+
+            stopWatch.Start();
+            log.Info($"Container created in {stopWatch.Elapsed}");
+
+            var logs = await aciClient.GetLogContentAsync();
+            log.Info($"Container logs: {logs}");
+
+            var ipAddress = await aciClient.GetIpAddress();
+            log.Info($"IPAddress: {ipAddress}");
         }
 
         [FunctionName("DeleteContainerInstance")]
-        public static void DeleteContainerInstance([QueueTrigger("delete-aci")]string deleteQueue,
-            [Aci(ContainerImageName="", Action=AciAction.Delete)] AciClient aciClient,
+        public static async Task DeleteContainerInstance([QueueTrigger("delete-aci")]string deleteQueue,
+            [Aci(AciName="juice-shop", Action=AciAction.Delete)] AciClient aciClient,
             TraceWriter log)
         {
-            log.Info($"C# Queue trigger function processed: {deleteQueue}");
+            var logs = await aciClient.GetLogContentAsync();
+            log.Info($"Container logs: {logs}");
+
+            log.Info($"Deleting container...");
+
+            await aciClient.DeleteAsync();
+
+            log.Info("Container deleted.");
+
         }
 
-        [FunctionName("GetLogsContainerInstance")]
-        public static void GetLogsContainerInstance([TimerTrigger("00:00:30")] TimerInfo timer,
-            [Aci(Action=AciAction.Logs)] AciClient client,
-            TraceWriter log)
-        {
-
-        }
     }
 }

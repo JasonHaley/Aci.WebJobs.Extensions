@@ -1,5 +1,4 @@
-﻿
-using Aci.WebJobs.Extensions;
+﻿using Aci.WebJobs.Extensions;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using System.Threading.Tasks;
