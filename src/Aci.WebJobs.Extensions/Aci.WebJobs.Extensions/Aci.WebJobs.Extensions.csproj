@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Management.Fluent" Version="1.10.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.0.0-beta6-10616" />
+  </ItemGroup>
+
+</Project>
