@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /src/Aci.WebJobs.Extensions/Samples/WebJobApp/Properties/launchSettings.json
 /src/Aci.WebJobs.Extensions/Samples/FunctionApp/Properties/PublishProfiles/AciFunctionApp - Web Deploy.pubxml
+/src/Aci.WebJobs.Extensions/Samples/WebJobVirusScanner/Properties/launchSettings.json

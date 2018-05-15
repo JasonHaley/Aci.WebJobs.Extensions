@@ -32,16 +32,21 @@ namespace Aci.WebJobs.Extensions.Services
                           .WithDefaultSubscription();
         }
 
-        public async Task CreateAsync(string containerImaageName, int port)
+        public async Task CreateAsync(string containerImageName, int port)
         {
-            await _azure.ContainerGroups.Define($"{_attribute.AciName}-group")
+            await CreateAsync(_attribute.AciName, containerImageName, port);
+        }
+
+        public async Task CreateAsync(string aciName, string containerImageName, int port)
+        {
+            await _azure.ContainerGroups.Define($"{aciName}-group")
                         .WithRegion(_attribute.Region)
                         .WithNewResourceGroup(_attribute.ResourceGroupName)
                         .WithLinux()
                         .WithPublicImageRegistryOnly()
                         .WithoutVolume()
-                        .DefineContainerInstance(_attribute.AciName)
-                        .WithImage(containerImaageName)
+                        .DefineContainerInstance(aciName)
+                        .WithImage(containerImageName)
                         .WithExternalTcpPort(port)
                         .WithCpuCoreCount(.5)
                         .WithMemorySizeInGB(1)
@@ -49,12 +54,16 @@ namespace Aci.WebJobs.Extensions.Services
                         .WithRestartPolicy(ContainerGroupRestartPolicy.Never)
                         .CreateAsync();
         }
-        
+
         public async Task DeleteAsync()
+        {
+            await DeleteAsync(_attribute.AciName);
+        }
+        public async Task DeleteAsync(string aciName)
         {
             var containerGroup = await _azure.ContainerGroups.GetByResourceGroupAsync(
                 _attribute.ResourceGroupName,
-                $"{_attribute.AciName}-group");
+                $"{aciName}-group");
 
             _azure.ContainerGroups.DeleteById(containerGroup.Id);
 
@@ -63,18 +72,27 @@ namespace Aci.WebJobs.Extensions.Services
 
         public async Task<string> GetLogContentAsync()
         {
+            return await GetLogContentAsync(_attribute.AciName);
+        }
+
+        public async Task<string> GetLogContentAsync(string aciName)
+        {
             var containerGroup = await _azure.ContainerGroups.GetByResourceGroupAsync(
                     _attribute.ResourceGroupName,
-                    $"{_attribute.AciName}-group");
+                    $"{aciName}-group");
 
             return containerGroup.GetLogContent(_attribute.AciName);
         }
 
         public async Task<string> GetIpAddress()
         {
+            return await GetIpAddress(_attribute.AciName);
+        }
+        public async Task<string> GetIpAddress(string aciName)
+        {
             var containerGroup = await _azure.ContainerGroups.GetByResourceGroupAsync(
                     _attribute.ResourceGroupName,
-                    $"{_attribute.AciName}-group");
+                    $"{aciName}-group");
             return containerGroup.IPAddress;
         }
     }

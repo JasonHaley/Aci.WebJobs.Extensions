@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aci.WebJobs.Extensions", "Aci.WebJobs.Extensions\Aci.WebJobs.Extensions.csproj", "{972BB6FE-468A-4413-ABE2-D8AEA0D2A3B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aci.WebJobs.Extensions", "Aci.WebJobs.Extensions\Aci.WebJobs.Extensions.csproj", "{972BB6FE-468A-4413-ABE2-D8AEA0D2A3B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D8E03DD2-A609-41FC-9242-72B37BEF795D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp", "Samples\FunctionApp\FunctionApp.csproj", "{5DA15391-DB8F-4ABE-B706-904589D1CFAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp", "Samples\FunctionApp\FunctionApp.csproj", "{5DA15391-DB8F-4ABE-B706-904589D1CFAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJobApp", "Samples\WebJobApp\WebJobApp.csproj", "{A7EACCE1-A13A-4F96-8435-872438CFF222}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebJobApp", "Samples\WebJobApp\WebJobApp.csproj", "{A7EACCE1-A13A-4F96-8435-872438CFF222}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJobVirusScanner", "Samples\WebJobVirusScanner\WebJobVirusScanner.csproj", "{0259AECF-8016-45D9-AF7B-7C65C110F9FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{A7EACCE1-A13A-4F96-8435-872438CFF222}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7EACCE1-A13A-4F96-8435-872438CFF222}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7EACCE1-A13A-4F96-8435-872438CFF222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0259AECF-8016-45D9-AF7B-7C65C110F9FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0259AECF-8016-45D9-AF7B-7C65C110F9FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0259AECF-8016-45D9-AF7B-7C65C110F9FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0259AECF-8016-45D9-AF7B-7C65C110F9FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5DA15391-DB8F-4ABE-B706-904589D1CFAF} = {D8E03DD2-A609-41FC-9242-72B37BEF795D}
 		{A7EACCE1-A13A-4F96-8435-872438CFF222} = {D8E03DD2-A609-41FC-9242-72B37BEF795D}
+		{0259AECF-8016-45D9-AF7B-7C65C110F9FE} = {D8E03DD2-A609-41FC-9242-72B37BEF795D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0B9A0A96-8322-411E-AB38-A7119F765D22}
